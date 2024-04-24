@@ -452,8 +452,13 @@ nav ul li a:hover {
   }
 
   .works__box-item {
-    width: 80%;
+    width: 85%;
+    
   }
+  .works__box-item img {
+    box-shadow: 2px 2px 5px 2px; 
+  }
+ 
 }
 
 .works__box-item img {
@@ -704,7 +709,7 @@ border: 1px solid #222;
 }
 
 .timeline {
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
   margin: 50px auto;
   padding: 0 30px;
@@ -717,7 +722,11 @@ border: 1px solid #222;
 }
 
 .timeline dl {
-  margin: 10px 0 20px 3em;
+  margin: 10px 0 20px 4em;
+  box-shadow: 3px 3px 3px 3px;
+  border-radius: 5px;
+  padding: 20px 10px;
+  background-color: white;
 }
 
 .timeline dd {
