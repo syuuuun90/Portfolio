@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body {
-  line-height: 1.4rem;
+  line-height: 1.4;
   color: #555;
   background-image: url(images/bgimage.png);
   background-attachment: fixed;
@@ -28,14 +28,65 @@ img {
   text-align: center;
 }
 
-/*スクロールダウン----------------*/
+.info__answer {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 28px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.5;
+  padding: 40px 0;
+}
+
+/* splash
+//===================================================================== */
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: #fff;
+  text-align: center;
+  color: #fff;
+}
+
+#splash_logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#splash_logo img {
+  width: 150px;
+}
+
+.fadeUp_top {
+  animation-name: fadeUpAnime;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* スクロールダウン
+//===================================================================== */
 .scrolldown {
   position: absolute;
   right: 50%;
   animation: arrowmove 1s ease-in-out infinite;
 }
 
-/*下からの距離が変化して全体が下→上→下に動く*/
 @keyframes arrowmove {
   0% {
     bottom: 1%;
@@ -52,15 +103,12 @@ img {
 
 /*Scrollテキストの描写*/
 .scrolldown span {
-  /*描画位置*/
   position: absolute;
   right: -200px;
   top: -250px;
-  /*テキストの形状*/
   color: #555;
   font-size: 0.7rem;
   letter-spacing: 0.05em;
-  /*縦書き設定*/
   -ms-writing-mode: tb-rl;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
@@ -69,11 +117,9 @@ img {
 /* 矢印の描写 */
 .scrolldown:before {
   content: "";
-  /*描画位置*/
   position: absolute;
   right: -212px;
   top: -230px;
-  /*矢印の形状*/
   width: 1px;
   height: 20px;
   background: #555;
@@ -82,11 +128,9 @@ img {
 
 .scrolldown:after {
   content: "";
-  /*描画位置*/
   position: absolute;
   right: -206px;
   top: -260px;
-  /*矢印の形状*/
   width: 1px;
   height: 50px;
   background: #555;
@@ -110,8 +154,8 @@ img {
   }
 }
 
-/*フェードイン---------------*/
-
+/* フェードイン
+//===================================================================== */
 .fadeUp {
   animation-name: fadeUpAnime;
   animation-duration: 0.7s;
@@ -130,33 +174,23 @@ img {
     transform: translateY(0);
   }
 }
+
 .fadeUpTrigger {
   opacity: 0;
 }
 
-
-
-/* 共通おわり--------------------------------  */
-
-/* header---------------- */
-
+/* =======================================================================
+ header
+======================================================================= */
 #header {
-  position: fixed;
-  height: 64px;
-  background-color: #fff;
-  z-index: 5;
-  opacity: 0.9;
-  font-family: "Josefin Sans", sans-serif;
-}
-
-.header__container {
   display: flex;
-  justify-content: space-between;
-  color: #666;
-  padding: 0 40px;
+  justify-content: center;
+  gap: 100px;
+  position: fixed;
+  background-color: #fff;
   width: 100vw;
-  max-width: 80%;
-  margin: 0 auto;
+  font-family: "Josefin Sans", sans-serif;
+  z-index: 10;
 }
 
 .header__logo {
@@ -164,17 +198,12 @@ img {
   max-width: 64px;
 }
 
-.header__nav {
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-
 .nav__list {
   display: flex;
 }
 
 .nav__list-item {
-  padding: 10px;
+  padding: 15px 0;
 }
 
 nav ul li a {
@@ -191,113 +220,140 @@ nav ul li a:hover {
   text-shadow: 1px 1px #444;
 }
 
-.sp__header {
-  display: none;
-}
 
 @media screen and (max-width: 768px) {
   #header {
-    display: none;
-  }
-
-  .sp__header {
+    position: static;
     display: block;
-    position: fixed;
-    z-index: 10;
-    font-family: "Josefin Sans", sans-serif;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    opacity: 0.9;
+    height: 70px;
   }
 
   .header__logo {
-    display: inline-block;
+    padding: 10px;
+    max-width: 80px;
     margin: 0 auto;
+  }
+
+  /* ハンバーガーメニュー
+ //===================================================================== */
+  .open_btn {
+    position: fixed;
+    background: #555;
+    top: 30px;
+    left: 30px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    z-index: 100;
+  }
+
+  .open_btn span {
+    display: inline-block;
+    transition: all .5s;
     position: absolute;
+    left: 14px;
+    height: 2px;
+    border-radius: 5px;
+    background: #fff;
+    width: 45%;
+  }
+
+  .open_btn span:nth-of-type(1) {
+    top: 11px;
+  }
+
+  .open_btn span:nth-of-type(2) {
+    top: 17px;
+  }
+
+  .open_btn span:nth-of-type(3) {
+    top: 23px;
+  }
+
+  .open_btn span:nth-of-type(3)::after {
+    content: "Menu";
+    position: absolute;
+    top: 7px;
+    left: -2px;
+    color: #fff;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .open_btn.active span:nth-of-type(1) {
+    top: 12px;
+    left: 16px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+  }
+
+  .open_btn.active span:nth-of-type(2) {
+    opacity: 0;
+  }
+
+  .open_btn.active span:nth-of-type(3) {
+    top: 24px;
+    left: 16px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+  }
+
+  .open_btn.active span:nth-of-type(3)::after {
+    content: "Close";
+    transform: translateY(0) rotate(-45deg);
+    top: 5px;
+    left: 3px;
+  }
+
+  /* navの中身
+//===================================================================== */
+  nav {
+    position: fixed;
+    z-index: 99;
+    top: -120%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.6s;
+  }
+
+  nav.panelactive {
     top: 0;
+  }
+
+  nav ul {
+    position: absolute;
+    z-index: 99;
+    top: 55%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .nav__list {
+    display: block;
+  }
+
+  .nav__list a {
+    color: #555;
+    padding: 5px;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid #555;
+  }
+
+  .nav__list a:hover {
+    color: #fff;
+    background-color: #555;
+    transition: 0.8s;
+    border-bottom: 2px solid #000;
   }
 }
 
-.hamburger-menu {
-  width: 64px;
-  height: 64px;
-  position: relative;
-  border: none;
-  background: transparent;
-  appearance: none;
-  cursor: pointer;
-}
-
-.hamburger-menu__bar {
-  display: inline-block;
-  width: 44%;
-  height: 2px;
-  background: #555;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: .5s;
-}
-
-.hamburger-menu__bar:first-child {
-  top: 16px;
-}
-
-.hamburger-menu__bar:nth-child(2) {
-  top: 24px;
-}
-
-.hamburger-menu__bar:last-child {
-  top: 32px;
-}
-
-.hamburger-menu--open .hamburger-menu__bar {
-  top: 50%;
-}
-
-.hamburger-menu--open .hamburger-menu__bar:first-child {
-  transform: translateX(-50%) translateY(-50%) rotate(45deg);
-}
-
-.hamburger-menu--open .hamburger-menu__bar:last-child {
-  transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-}
-
-.hamburger-menu--open .hamburger-menu__bar:nth-child(2) {
-  display: none;
-}
-
-.navigation {
-  display: none;
-  background: #888;
-  position: absolute;
-  top: 64px;
-  width: 100vw;
-  z-index: 9999;
-}
-
-.navigation__list {
-  text-align: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.navigation__link {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  padding: 12px 0;
-  transition: .5s;
-}
-
-
-
-/* mainview----------------  */
-
+/* =======================================================================
+ mainview
+======================================================================= */
 #mainview {
   height: 700px;
   background-color: #fff;
@@ -325,11 +381,12 @@ nav ul li a:hover {
 
   .title__text {
     padding-top: 100px;
+    width: 360px;
   }
 }
 
-/* タイピング ===============*/
-
+/* タイピング
+//===================================================================== */
 .typing span {
   display: none;
   white-space: wrap;
@@ -351,19 +408,17 @@ nav ul li a:hover {
   }
 }
 
-/* タイピングおわり ===============*/
-/* mainviewここまで----------------  */
-
-/* about----------------  */
-
+/* =======================================================================
+ About
+======================================================================= */
 #about {
   text-align: center;
-  padding: 200px 0;
+  padding: 100px 0 150px;
 }
 
 @media screen and (max-width:768px) {
   #about {
-    padding: 100px 40px;
+    padding: 50px 0;
     margin-top: 64px;
   }
 }
@@ -372,8 +427,9 @@ nav ul li a:hover {
   line-height: 2;
 }
 
-/* profile---------------- */
-
+/* =======================================================================
+ Profile
+======================================================================= */
 #profile {
   padding: 100px 0;
   background-color: #fff;
@@ -400,10 +456,9 @@ nav ul li a:hover {
   padding-bottom: 5px;
 }
 
-/* sp profile---------------- */
 @media screen and (max-width:768px) {
   #profile {
-    padding: 80px 0;
+    padding: 60px 0;
     background-color: #fff;
   }
 
@@ -420,12 +475,13 @@ nav ul li a:hover {
   }
 
   .profile__text {
-    width: 90%;
-    padding-left: 60px;
+    width: 100%;
   }
 }
 
-/* works---------------- */
+/* =======================================================================
+ Works
+======================================================================= */
 #works {
   padding: 100px 0;
 }
@@ -441,10 +497,9 @@ nav ul li a:hover {
   width: 40%;
 }
 
-/* sp works---------------- */
 @media screen and (max-width:768px) {
   #works {
-    padding: 80px 0;
+    padding: 60px 0;
   }
 
   .works__box {
@@ -452,8 +507,13 @@ nav ul li a:hover {
   }
 
   .works__box-item {
-    width: 80%;
+    width: 90%;
   }
+
+  .works__box-item img {
+    box-shadow: 2px 2px 5px 2px;
+  }
+
 }
 
 .works__box-item img {
@@ -496,7 +556,7 @@ nav ul li a:hover {
   max-width: 600px;
   border: 1px solid #000;
 
-  
+
 }
 
 .modal__box-text h3 {
@@ -523,9 +583,13 @@ nav ul li a:hover {
 .modal__box-text img {
   display: block;
   max-width: 400px;
-margin: auto;
-padding-bottom: 20px;
-border: 1px solid #222;
+  margin: auto;
+  padding-bottom: 20px;
+  border: 1px solid #222;
+}
+.modal__box-text a:hover{
+  opacity: 0.7;
+  transition: 0.3s;
 }
 
 .modaal-close:after,
@@ -556,7 +620,9 @@ border: 1px solid #222;
   animation-delay: 0.4s;
 }
 
-/* skill---------------- */
+/* =======================================================================
+ Skill
+======================================================================= */
 #skill {
   padding: 100px 0;
   background-color: #fff;
@@ -624,6 +690,10 @@ border: 1px solid #222;
   font-weight: bold;
 }
 
+.skill_text-box li {
+  list-style: square;
+}
+
 .bar-html {
   background-color: #E44F26;
 }
@@ -685,26 +755,27 @@ border: 1px solid #222;
 
 }
 
-/* sp skill---------------- */
 @media screen and (max-width:768px) {
   #skill {
-    padding: 80px 0;
+    padding: 60px 0;
     background-color: #fff;
   }
 
   .skill__box-item {
-    width: 80%;
+    width: 90%;
     text-align: center;
   }
 }
 
-/* history---------------- */
+/* =======================================================================
+ History
+======================================================================= */
 #history {
   padding: 100px 0;
 }
 
 .timeline {
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
   margin: 50px auto;
   padding: 0 30px;
@@ -717,7 +788,9 @@ border: 1px solid #222;
 }
 
 .timeline dl {
-  margin: 10px 0 20px 3em;
+  margin: 10px 0 20px 40px;
+  padding: 25px;
+  background-color: white;
 }
 
 .timeline dd {
@@ -740,24 +813,89 @@ border: 1px solid #222;
   left: 0;
   width: 10px;
   height: 10px;
-  background: #666;
+  background: #555;
   border-radius: 50%;
 }
 
-/* sp history---------------- */
+.btnLine{
+  position:relative;
+  color:#555;
+    text-decoration: none;
+    outline: none;
+  }
+  
+  .btnLine::before,
+  .btnLine::after {
+  content:'';
+  position:absolute;
+  border:solid #555;
+  width:20px;
+  height:10px;
+  transition:all 0.3s ease-in-out;
+  }
+  
+  .btnLine::before{
+  top:0;
+  left:0;
+  border-width:2px 0 0 2px;
+  }
+  
+  .btnLine::after{
+  bottom:0;
+  right:0;
+  border-width:0 2px 2px 0;
+  }
+  
+  .btnLine:hover::before,
+  .btnLine:hover::after{
+  width:calc(100%);
+  height:calc(100%);
+  border-color:#555
+  }
+
 @media screen and (max-width:768px) {
   #history {
-    padding: 80px 20px;
+    padding: 60px 0;
+  }
+
+  .timeline {
+    padding: 0 10px;
+    margin: 0;
+  }
+
+  .timeline dl {
+    margin-left: 2em;
+    padding: 20px 10px;
+    box-shadow: 2px 2px 10px #555;
+    border-radius: 5px;
+  }
+
+    
+  .btnLine::before,
+  .btnLine::after {
+    border-width:0;
+  content:'';
+  position:absolute;
+  width:0;
+  height:0;
+  transition:all 0.3s ease-in-out;
+  }
+  .btnLine:hover::before,
+  .btnLine:hover::after{
+  width:calc(0%);
+  height:calc(0%);
   }
 }
 
-/* info---------------- */
+/* =======================================================================
+ Info
+======================================================================= */
 #info {
   background-color: #fff;
 }
 
 #info .container {
-  padding: 100px 0;
+  padding: 60px 0;
   margin-left: auto;
   margin-right: auto;
   max-width: 720px;
@@ -864,10 +1002,14 @@ border: 1px solid #222;
 
 }
 
-/* sp info---------------- */
 @media screen and (max-width: 768px) {
   #info .container {
-    padding: 80px 40px;
+    padding: 30px 10px;
+  }
+
+  .info__item {
+    display: block;
+    text-align: center;
   }
 
   .info__item-label {
@@ -894,6 +1036,7 @@ border: 1px solid #222;
     height: 40px;
     flex: inherit;
     font-size: 15px;
+    text-align: left;
   }
 
   .info__item-textarea {
@@ -912,8 +1055,9 @@ border: 1px solid #222;
   }
 }
 
-
-/* footer---------------- */
+/* =======================================================================
+ footer
+======================================================================= */
 #footer {
   text-align: center;
   color: #FFF;
@@ -930,6 +1074,17 @@ border: 1px solid #222;
   background-color: #fff;
   color: #555;
   text-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+  #footer .sec__title {
+    line-height: 1.5;
+    padding: 60px 0;
+  }
+
+  #footer small {
+    padding: 10px 0;
+  }
 }
 
 #js__page-top:hover {
